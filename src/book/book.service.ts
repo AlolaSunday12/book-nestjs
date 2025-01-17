@@ -9,4 +9,14 @@ export class BookService {
     @InjectModel(Book.name)
     private bookModel: mongoose.Model<Book>,
   ) {}
+
+  async findAll(): Promise<Book[]> {
+    const books = await this.bookModel.find();
+    return books;
+  }
+
+  async createBook(book: Book): Promise<Book> {
+    const books = await this.bookModel.create(book)
+    return books;
+  }
 }
