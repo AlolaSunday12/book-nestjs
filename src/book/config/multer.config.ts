@@ -13,4 +13,12 @@ export const multerConfig = {
       callback(null, filename);
     },
   }),
+
+  fileFilter: (req, file, callback) => {
+    // Only allow image files
+    if (!/(jpg|jpeg|png|gif)$/.test(file.mimetype)) {
+      return callback(new Error('Only image files are allowed!'), false);
+    }
+    callback(null, true);
+  },
 };
