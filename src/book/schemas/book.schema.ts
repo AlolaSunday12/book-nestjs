@@ -26,7 +26,7 @@ export class Book {
   @Prop()
   category: Category;
 
-  @Prop([String]) // Array of image URLs
+  @Prop([String])
   images: string[];
 }
 
