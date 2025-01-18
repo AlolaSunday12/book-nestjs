@@ -32,7 +32,6 @@ export class BookService {
     });
     console.log('Book to be saved:', book);
 
-    // Save the book in the database
     return await book.save();
   }
 
