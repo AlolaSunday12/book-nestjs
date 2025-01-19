@@ -27,6 +27,7 @@ import { Query as ExpressQuery } from 'express-serve-static-core';
 export class BookController {
   constructor(private bookService: BookService) {}
 
+  // Get all books route with query
   @Get()
   async getAllBooks(@Query() query: ExpressQuery): Promise<Book[]> {
     return this.bookService.findAll(query);
