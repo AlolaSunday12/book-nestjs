@@ -10,6 +10,7 @@ import {
   ParseFilePipeBuilder,
   Post,
   Put,
+  Query,
   Req,
   UploadedFiles,
   UseInterceptors,
@@ -20,14 +21,15 @@ import { CreateBookDto } from './dto/create-book.dto';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { multerConfig } from './config/multer.config';
 import { UpdateBookDto } from './dto/update-book.dto';
+import { Query as ExpressQuery } from 'express-serve-static-core';
 
 @Controller('book')
 export class BookController {
   constructor(private bookService: BookService) {}
 
   @Get()
-  async getAllBooks(): Promise<Book[]> {
-    return this.bookService.findAll();
+  async getAllBooks(@Query() query: ExpressQuery): Promise<Book[]> {
+    return this.bookService.findAll(query);
   }
 
   @Post()
@@ -57,7 +59,7 @@ export class BookController {
   }
 
   @Put(':id')
-  @UseInterceptors(FilesInterceptor('images', 10, multerConfig))
+  @UseInterceptors(FilesInterceptor('file', 10, multerConfig))
   async updateById(
     @Param('id') id: string,
     @Body() bookDto: UpdateBookDto,
