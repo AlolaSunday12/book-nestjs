@@ -14,6 +14,7 @@ export class BookService {
   ) {}
 
   async findAll(query: ExpressQuery): Promise<Book[]> {
+    // pagination
     const resPerPage = 2;
     const currentPage = Number(query.page) || 1;
     const skip = resPerPage * (currentPage - 1);
