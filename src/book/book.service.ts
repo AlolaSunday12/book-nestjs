@@ -18,18 +18,18 @@ export class BookService {
     const resPerPage = 2;
     const currentPage = Number(query.page) || 1;
     const skip = resPerPage * (currentPage - 1);
-    const keyword = query.keyword 
-    ? {
-      title: {
+    const keyword = query.keyword
+      ? {
+          title: {
             $regex: query.keyword,
-            $options: 'i'
-          }
+            $options: 'i',
+          },
         }
-      : {}
+      : {};
     const books = await this.bookModel
-    .find({ ...keyword })
+      .find({ ...keyword })
       .limit(resPerPage)
-      .skip(skip);;
+      .skip(skip);
     return books;
   }
 
