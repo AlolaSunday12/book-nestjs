@@ -59,6 +59,7 @@ export class BookController {
     return await this.bookService.findById(id);
   }
 
+  // update by Id
   @Put(':id')
   @UseInterceptors(FilesInterceptor('file', 10, multerConfig))
   async updateById(
