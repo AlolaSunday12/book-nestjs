@@ -1,5 +1,6 @@
 import { IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Category } from '../schemas/book.schema';
+import { Transform } from 'class-transformer';
 
 export class CreateBookDto {
   @IsNotEmpty()
@@ -16,6 +17,7 @@ export class CreateBookDto {
 
   @IsNotEmpty()
   @IsNumber()
+  @Transform(({ value }) => parseFloat(value))
   price: number;
 
   @IsNotEmpty()
