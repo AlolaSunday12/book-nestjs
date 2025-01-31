@@ -30,6 +30,11 @@ export class BookService {
       .find({ ...keyword })
       .limit(resPerPage)
       .skip(skip);
+
+    // Check if no books are found
+    if (books.length === 0) {
+      throw new NotFoundException('No books available for the requested page.');
+    }
     return books;
   }
 
