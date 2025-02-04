@@ -1,4 +1,11 @@
-import { IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString
+} from 'class-validator';
 import { Category } from '../schemas/book.schema';
 import { Transform } from 'class-transformer';
 
@@ -25,6 +32,7 @@ export class CreateBookDto {
   category: Category;
 
   @IsOptional()
-  @IsString({ each: true }) // Ensures all items in the array are strings
-  images?: string[];
+  @IsString()
+  @IsArray()
+  images: string[];
 }
