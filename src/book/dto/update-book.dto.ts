@@ -1,5 +1,6 @@
 import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
 import { Category } from '../schemas/book.schema';
+import { Transform } from 'class-transformer';
 
 export class UpdateBookDto {
   @IsOptional()
@@ -16,10 +17,11 @@ export class UpdateBookDto {
 
   @IsOptional()
   @IsNumber()
+  @Transform(({ value }) => parseFloat(value))
   price?: number;
 
   @IsOptional()
-  @IsEnum(Category)
+  @IsEnum(Category, { message: 'Please type correct Category.' })
   category?: Category;
 
   @IsOptional()
