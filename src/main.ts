@@ -9,8 +9,8 @@ async function bootstrap() {
 
   app.useGlobalPipes(
     new ValidationPipe({
-      transform: true,  // Enables automatic transformation
-      whitelist: true,  // Removes unexpected fields
+      transform: true, // Enables automatic transformation
+      whitelist: true, // Removes unexpected fields
       forbidNonWhitelisted: true, // Throws an error for unexpected fields
     }),
   );
