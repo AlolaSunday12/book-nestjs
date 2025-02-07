@@ -13,6 +13,7 @@ import {
   Query,
   Req,
   UploadedFiles,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { Book } from './schemas/book.schema';
@@ -22,6 +23,7 @@ import { FilesInterceptor } from '@nestjs/platform-express';
 import { multerConfig } from './config/multer.config';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { Query as ExpressQuery } from 'express-serve-static-core';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('book')
 export class BookController {
@@ -34,9 +36,11 @@ export class BookController {
   }
 
   @Post()
+  @UseGuards(AuthGuard())
   @UseInterceptors(FilesInterceptor('file', 10, multerConfig))
   async createBook(
     @Body() bookDto: CreateBookDto,
+    @Req() req,
     @UploadedFiles(
       new ParseFilePipeBuilder()
         .addFileTypeValidator({
@@ -51,7 +55,7 @@ export class BookController {
     )
     files: Array<Express.Multer.File>,
   ): Promise<any> {
-    return this.bookService.createBook(bookDto, files);
+    return this.bookService.createBook(bookDto, req.user, files);
   }
 
   @Get(':id')
@@ -92,7 +96,7 @@ export class BookController {
   @Delete(':id')
   async deleteBook(
     @Param('id')
-    id: string
+    id: string,
   ): Promise<Book> {
     const book = await this.bookService.deleteBook(id);
 
