@@ -1,13 +1,15 @@
 import {
   IsArray,
+  IsEmpty,
   IsEnum,
   IsNotEmpty,
   IsNumber,
   IsOptional,
-  IsString
+  IsString,
 } from 'class-validator';
 import { Category } from '../schemas/book.schema';
 import { Transform } from 'class-transformer';
+import { User } from '../../auth/schemas/user.schema';
 
 export class CreateBookDto {
   @IsNotEmpty()
@@ -35,4 +37,7 @@ export class CreateBookDto {
   @IsString()
   @IsArray()
   images: string[];
+
+  @IsEmpty({ message: 'You can not pass user Id.' })
+  readonly user: User;
 }
