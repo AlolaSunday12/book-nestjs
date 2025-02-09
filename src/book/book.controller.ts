@@ -24,6 +24,9 @@ import { multerConfig } from './config/multer.config';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { Query as ExpressQuery } from 'express-serve-static-core';
 import { AuthGuard } from '@nestjs/passport';
+import { Roles } from 'src/auth/decorators/role.decorator';
+import { RolesGuard } from 'src/auth/guards/role.guard';
+import { Role } from 'src/auth/enums/role.enum';
 
 @Controller('book')
 export class BookController {
@@ -31,6 +34,8 @@ export class BookController {
 
   // Get all books route with query
   @Get()
+  @Roles(Role.Editor, Role.Admin, Role.User)
+  @UseGuards(AuthGuard(), RolesGuard)
   async getAllBooks(@Query() query: ExpressQuery): Promise<Book[]> {
     return this.bookService.findAll(query);
   }
