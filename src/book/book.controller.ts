@@ -24,15 +24,18 @@ import { multerConfig } from './config/multer.config';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { Query as ExpressQuery } from 'express-serve-static-core';
 import { AuthGuard } from '@nestjs/passport';
-import { Roles } from 'src/auth/decorators/role.decorator';
-import { RolesGuard } from 'src/auth/guards/role.guard';
-import { Role } from 'src/auth/enums/role.enum';
+import { Roles } from '../auth/decorators/role.decorator';
+import { RolesGuard } from '../auth/guards/role.guard';
+import { Role } from '../auth/enums/role.enum';
+import { SkipThrottle, Throttle } from '@nestjs/throttler';
 
 @Controller('book')
 export class BookController {
   constructor(private bookService: BookService) {}
 
   // Get all books route with query
+  //@SkipThrottle()
+  @Throttle({ default: { limit: 1, ttl: 2000 }})
   @Get()
   @Roles(Role.Editor, Role.Admin, Role.User)
   @UseGuards(AuthGuard(), RolesGuard)
