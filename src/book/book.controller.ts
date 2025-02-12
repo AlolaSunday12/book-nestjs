@@ -35,7 +35,7 @@ export class BookController {
 
   // Get all books route with query
   //@SkipThrottle()
-  @Throttle({ default: { limit: 1, ttl: 2000 }})
+  @Throttle({ default: { limit: 1, ttl: 2000 } })
   @Get()
   @Roles(Role.Editor, Role.Admin, Role.User)
   @UseGuards(AuthGuard(), RolesGuard)
