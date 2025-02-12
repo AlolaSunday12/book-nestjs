@@ -56,7 +56,7 @@ export class BookService {
     // Create the book with the DTO and the uploaded image URLs
     const book = new this.bookModel({
       ...bookDto,
-      images: imageUrls, // Assuming the schema has an "images" field
+      images: imageUrls,
       user: user._id,
     });
     console.log('Book to be saved:', book);
