@@ -14,6 +14,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
+  // Signup route
   async signUp(signUpDto: SignUpDto): Promise<{ token: string }> {
     const { name, email, password, role } = signUpDto;
 
