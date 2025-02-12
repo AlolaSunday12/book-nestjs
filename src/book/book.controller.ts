@@ -101,6 +101,7 @@ export class BookController {
     return book;
   }
 
+  // Delete book by Id
   @Delete(':id')
   async deleteBook(
     @Param('id')
