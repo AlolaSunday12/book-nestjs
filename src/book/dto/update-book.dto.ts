@@ -32,7 +32,7 @@ export class UpdateBookDto {
   category?: Category;
 
   @IsOptional()
-  @IsString({ each: true }) // Ensures all items in the array are strings
+  @IsString({ each: true })
   images?: string[];
 
   @IsEmpty({ message: 'You can not pass user Id.' })
