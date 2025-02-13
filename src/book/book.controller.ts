@@ -29,7 +29,7 @@ import { RolesGuard } from '../auth/guards/role.guard';
 import { Role } from '../auth/enums/role.enum';
 import { SkipThrottle, Throttle } from '@nestjs/throttler';
 
-@Controller('book')
+@Controller('books')
 export class BookController {
   constructor(private bookService: BookService) {}
 
@@ -43,6 +43,7 @@ export class BookController {
     return this.bookService.findAll(query);
   }
 
+  //Post book route
   @Post()
   @UseGuards(AuthGuard())
   @UseInterceptors(FilesInterceptor('file', 10, multerConfig))
