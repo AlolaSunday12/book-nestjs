@@ -56,6 +56,29 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+
+## Routes
+
+# POST Routes for registration
+$ http://localhost:3000/auth/signup
+
+# GET Routes for login
+$ http://localhost:3000/auth/login
+
+# POST Routes to post contents of the books to database
+$ http://localhost:3000/books
+
+# GET Routes to retrieve contents of the books in database
+$ http://localhost:3000/books
+
+# PUT Routes to update the contents of a single book in database
+$ http://localhost:3000/books/:id
+
+# GET Routes to get the contents of a single book
+$ http://localhost:3000/books/:id
+
+# DELETE Routes to deletes contents of a single book
+$ http://localhost:3000/books/:id
 ```
 
 ## Deployment
