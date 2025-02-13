@@ -86,6 +86,7 @@ export class BookService {
     return book;
   }
 
+  // Delete book by Id
   async deleteBook(id: string): Promise<Book> {
     return await this.bookModel.findByIdAndDelete(id);
   }
