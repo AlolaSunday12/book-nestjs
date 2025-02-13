@@ -31,7 +31,7 @@ export class AuthService {
     return { token };
   }
 
-  // Login
+  // Login route
   async login(loginDto: LoginDto): Promise<{ token: string }> {
     const { email, password } = loginDto;
 
