@@ -1,4 +1,5 @@
-import {
+import {//
+
   BadRequestException,
   Body,
   Controller,
@@ -67,6 +68,7 @@ export class BookController {
     return this.bookService.createBook(bookDto, req.user, files);
   }
 
+  // Get Id
   @Get(':id')
   async getBookId(@Param('id') id: string): Promise<Book> {
     return await this.bookService.findById(id);
