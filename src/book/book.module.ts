@@ -8,6 +8,7 @@ import { AuthModule } from 'src/auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard } from '@nestjs/throttler';
 
+// book module
 @Module({
   imports: [
     AuthModule,
