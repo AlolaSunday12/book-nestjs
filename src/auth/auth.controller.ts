@@ -7,7 +7,7 @@ import { LoginDto } from './dto/login.dto';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  // Signup route
+  // Signup routes
   @Post('/signup')
   signUp(@Body() signUpDto: SignUpDto): Promise<{ token: string }> {
     return this.authService.signUp(signUpDto);
