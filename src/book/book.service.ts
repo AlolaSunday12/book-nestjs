@@ -78,7 +78,7 @@ export class BookService {
     return book;
   }
 
-  // Update book by Id
+  // Update book by Id route
   async updateById(id: string, bookDto: UpdateBookDto): Promise<Book> {
     const book = await this.bookModel.findByIdAndUpdate(id, bookDto, {
       new: true,
