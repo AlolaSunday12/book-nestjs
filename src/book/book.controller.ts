@@ -68,7 +68,7 @@ export class BookController {
     return this.bookService.createBook(bookDto, req.user, files);
   }
 
-  // Get Id
+  // Get Id route
   @Get(':id')
   async getBookId(@Param('id') id: string): Promise<Book> {
     return await this.bookService.findById(id);
