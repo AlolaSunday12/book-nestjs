@@ -42,8 +42,6 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Run tests
-
 ## Routes
 
 # POST Routes for registration
